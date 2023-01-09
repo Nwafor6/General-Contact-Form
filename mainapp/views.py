@@ -5,10 +5,13 @@ from rest_framework import generics
 from django.core.mail import send_mail, EmailMultiAlternatives,EmailMessage
 from django.template import Template, Context
 from django.template.loader import render_to_string
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+
 
 # Create your views here.
 
-
+@method_decorator(csrf_exempt, name='dispatch')
 class ContactSendingView(generics.CreateAPIView):
 	serializer_class=ContactSerializer
 
